@@ -43,3 +43,11 @@ Please cite the repository and the associated wiki page when referring to this w
 ## Repository scope
 
 This repository accompanies the UFRGS Brazil 2026 iGEM project. It contains study-specific scripts and input parameters. It does not contain measured binding affinities or experimental validation of the simulated interactions.
+
+## License
+
+Copyright (c) 2026 iGEM UFRGS Brazil contributors.
+
+Except where otherwise indicated, the original code, input files, documentation and other original materials in this repository are licensed under the [Creative Commons Attribution 4.0 International license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). See [LICENSE](LICENSE) for the full text.
+
+When reusing these materials, credit iGEM UFRGS Brazil 2026, link to this repository and the license, and indicate any changes. Third-party software, libraries, force fields, data and services retain their own licenses and attribution requirements.
