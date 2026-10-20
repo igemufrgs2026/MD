@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite this repository when referring to the CadR molecular dynamics workflow."
+title: "CadR molecular dynamics: iGEM UFRGS Brazil 2026"
+type: software
+authors:
+  - name: "iGEM UFRGS Brazil 2026"
+repository-code: "https://github.com/igemufrgs2026/MD"
+url: "https://2026.igem.wiki/ufrgs-brazil/model"
+abstract: "GROMACS input parameters and shell scripts for energy minimization, equilibration, production and analysis of CadR molecular dynamics simulations."
+keywords:
+  - CadR
+  - molecular dynamics
+  - GROMACS
+  - 2,4-D
+  - iGEM

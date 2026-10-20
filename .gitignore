@@ -1,0 +1,24 @@
+# GROMACS-generated trajectories and run files
+*.xtc
+*.trr
+*.tng
+*.edr
+*.tpr
+*.cpt
+*.log
+mdout*.mdp
+
+# Editor, GROMACS and OS temporary files
+*~
+\#*\#
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local run outputs
+analysis/

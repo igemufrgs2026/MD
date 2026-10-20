@@ -1,0 +1,56 @@
+; ============================================================
+; PRODUCAO - Bloco inicial 0-5 ns
+;
+; MODIFICACOES:
+;   [1] tinit = 1700  (era 500.0)
+;       MOTIVO: Atualizado para refletir o tempo acumulado
+;               correto apos a nova sequencia de equilibracao.
+;               Total equilibracao: ~1700 ps.
+;               Importante para continuidade temporal da
+;               trajetoria e para analises de tinit corretas.
+;
+;   [2] nsteps = 2250000  (mantido)
+;       MOTIVO: 2250000 * 0.002 ps = 4500 ps = 4.5 ns.
+;               Somado ao tinit de 1700 ps fica aproximadamente
+;               5 ns de producao. Correto.
+;               ATENCAO: se quiser exatamente 5 ns de producao
+;               use nsteps = 2500000.
+; ============================================================
+
+title               =  Producao MD - bloco 0-5ns
+constraints         =  all-bonds
+integrator          =  md
+tinit               =  1700.0       ; [1] MODIFICADO: era 500.0
+dt                  =  0.002
+nsteps              =  1650000      ; de 1.7ns até 5ns
+cutoff-scheme       = Verlet
+nstlist             = 20
+comm-mode           = Linear
+comm-grps           = System
+nstxout             =  5000         ; .trr a cada 10 ps
+nstvout             =  5000         ; velocidades a cada 10 ps
+nstfout             =  0
+nstlog              =  1000         ; .log a cada 2 ps
+nstenergy           =  1000         ; .edr a cada 2 ps
+nstxout-compressed  =  2500         ; .xtc a cada 5 ps
+coulombtype         =  PME
+rlist               =  1.2
+rcoulomb            =  1.2
+vdwtype             =  cut-off
+rvdw                =  1.2
+fourierspacing      =  0.12
+optimize_fft        =  yes
+pme_order           =  4
+ewald_rtol          =  1e-5
+Tcoupl              =  v-rescale
+tc_grps             =  Protein Non-Protein
+tau_t               =  0.1 0.1
+ref_t               =  310 310
+Pcoupl              =  parrinello-rahman
+Pcoupltype          =  isotropic
+tau_p               =  2
+compressibility     =  4.5e-5
+ref_p               =  1.0
+gen_vel             =  no
+gen_temp            =  310.0
+gen_seed            =  173529

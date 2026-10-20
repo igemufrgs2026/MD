@@ -1,0 +1,55 @@
+; ============================================================
+; EQ5 - NPT: Berendsen, restraints 10, temperatura 280 K
+;
+; MODIFICACOES:
+;   [1] Pcoupl = berendsen  (era parrinello-rahman)
+;       MOTIVO: Ainda usando Berendsen enquanto soltamos os
+;               restraints. O volume ainda esta se ajustando
+;               a cada mudanca de restraint. Berendsen e mais
+;               estavel nesta fase de transicao.
+;
+;   [2] nsteps = 100000 -> 200 ps  (era 5000 -> 10 ps)
+;       MOTIVO: Mesmo argumento do EQ4. Tempo insuficiente.
+; ============================================================
+
+title               =  EQ5 - NPT Berendsen 280K restraints 10
+define              =  -DPOSRES
+constraints         =  all-bonds
+integrator          =  md
+tinit               =  700
+dt                  =  0.002
+nsteps              =  100000       ; [2] MODIFICADO: era 5000 (10 ps) -> agora 200 ps
+cutoff-scheme       = Verlet
+nstlist             = 20
+comm-mode           = Linear
+comm-grps           = System
+nstxout             =  0
+nstvout             =  0
+nstfout             =  0
+nstlog              =  100
+nstenergy           =  100
+coulombtype         =  PME
+rlist               =  1.2
+rcoulomb            =  1.2
+vdwtype             =  cut-off
+rvdw                =  1.2
+fourierspacing      =  0.12
+fourier_nx          =  0
+fourier_ny          =  0
+fourier_nz          =  0
+pme_order           =  4
+ewald_rtol          =  1e-5
+optimize_fft        =  yes
+Tcoupl              =  v-rescale
+tc_grps             =  Protein Non-Protein
+tau_t               =  0.1 0.1
+ref_t               =  280 280
+Pcoupl              =  berendsen    ; [1] MODIFICADO: era parrinello-rahman
+refcoord-scaling    =  all
+pcoupltype          =  isotropic
+tau_p               =  2
+compressibility     =  4.5e-5
+ref_p               =  1.0
+gen_vel             =  no
+gen_temp            =  280.0
+gen_seed            =  173529

@@ -1,0 +1,52 @@
+; ============================================================
+; EQ2 - NVT: aquecimento para 200 K, restraints maximos
+;
+; MODIFICACOES:
+;   [1] Pcoupl = no  (era berendsen)
+;       MOTIVO: Ainda em NVT. Continuamos aquecendo o sistema
+;               com volume fixo. O barostato so entra depois
+;               que a temperatura estiver estabilizada.
+;
+;   [2] ref_t = 200 200  (era 280)
+;       MOTIVO: Segundo degrau do aquecimento gradual.
+;               100 K -> 200 K -> 280 K -> 300 K -> 310 K.
+;               Subir em degraus pequenos evita choques termicos
+;               que podem distorcer a estrutura da proteina.
+; ============================================================
+
+title               =  EQ2 - NVT 200K restraints maximos
+define              =  -DPOSRES
+constraints         =  all-bonds
+integrator          =  md
+tinit               =  300
+dt                  =  0.002
+nsteps              =  50000        ; 100 ps
+cutoff-scheme       = Verlet
+nstlist             = 20
+comm-mode           = Linear
+comm-grps           = System
+nstxout             =  0
+nstvout             =  0
+nstfout             =  0
+nstlog              =  100
+nstenergy           =  100
+coulombtype         =  PME
+rlist               =  1.2
+rcoulomb            =  1.2
+vdwtype             =  cut-off
+rvdw                =  1.2
+fourierspacing      =  0.12
+fourier_nx          =  0
+fourier_ny          =  0
+fourier_nz          =  0
+pme_order           =  4
+ewald_rtol          =  1e-5
+optimize_fft        =  yes
+Tcoupl              =  v-rescale
+tc_grps             =  Protein Non-Protein
+tau_t               =  0.1 0.1
+ref_t               =  200 200      ; [2] MODIFICADO: era 280 280
+Pcoupl              =  no           ; [1] MODIFICADO: era berendsen
+gen_vel             =  no
+gen_temp            =  200.0
+gen_seed            =  173529

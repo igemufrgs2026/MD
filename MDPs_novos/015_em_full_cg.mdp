@@ -1,0 +1,23 @@
+; ============================================================
+; EM3 - Energy minimization with conjugate gradient
+; ============================================================
+
+define              =  -DFLEXIBLE
+constraints         =  none
+integrator          =  cg
+nsteps              =  10000
+nstcgsteep          =  500
+cutoff-scheme       = Verlet
+nstlist             = 20
+emtol               =  10
+emstep              =  0.001
+comm-mode           = Linear
+comm-grps           = System
+coulombtype         =  PME
+rlist               =  1.2
+rcoulomb            =  1.2
+vdwtype             =  cut-off
+rvdw                =  1.2
+Tcoupl              =  no
+Pcoupl              =  no
+gen_vel             =  no

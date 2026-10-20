@@ -1,0 +1,58 @@
+; ============================================================
+; EQ7 - NPT: Parrinello-Rahman, sem restraints, temperatura 290 K
+;
+; MODIFICACOES:
+;   [1] Pcoupl = parrinello-rahman  (mantido - correto aqui)
+;       MOTIVO: Agora sim e o momento certo para trocar para
+;               Parrinello-Rahman. O volume ja foi equilibrado
+;               pelo Berendsen nos passos anteriores, entao
+;               o PR nao vai oscilar. Este barostato reproduz
+;               o ensemble NPT termodinamicamente correto.
+;
+;   [2] nsteps = 100000 -> 200 ps  (era 5000 -> 10 ps)
+;       MOTIVO: Primeiro passo com PR. Precisa de tempo para
+;               o barostato se estabilizar no novo regime.
+;
+;   [3] tinit atualizado
+; ============================================================
+
+title               =  EQ7 - NPT Parrinello-Rahman 290K sem restraints
+constraints         =  all-bonds
+integrator          =  md
+tinit               =  1100
+dt                  =  0.002
+nsteps              =  100000       ; [2] MODIFICADO: era 5000 (10 ps) -> agora 200 ps
+cutoff-scheme       = Verlet
+nstlist             = 20
+comm-mode           = Linear
+comm-grps           = System
+nstxout             =  0
+nstvout             =  0
+nstfout             =  0
+nstlog              =  100
+nstenergy           =  100
+coulombtype         =  PME
+rlist               =  1.2
+rcoulomb            =  1.2
+vdwtype             =  cut-off
+rvdw                =  1.2
+fourierspacing      =  0.12
+fourier_nx          =  0
+fourier_ny          =  0
+fourier_nz          =  0
+pme_order           =  4
+ewald_rtol          =  1e-5
+optimize_fft        =  yes
+Tcoupl              =  v-rescale
+tc_grps             =  Protein Non-Protein
+tau_t               =  0.1 0.1
+ref_t               =  290 290
+Pcoupl              =  parrinello-rahman
+refcoord-scaling    =  all
+pcoupltype          =  isotropic
+tau_p               =  2
+compressibility     =  4.5e-5
+ref_p               =  1.0
+gen_vel             =  no
+gen_temp            =  290.0
+gen_seed            =  173529
